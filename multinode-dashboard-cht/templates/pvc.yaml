@@ -1,0 +1,32 @@
+# https://blog.alekc.org/posts/template-for-persistent-volumes-on-helm-charts/
+{{- if not .Values.configPersistence.existingClaim }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ include "multinode-dashboard.fullname" . }}-config-pvc
+  labels:
+    {{- include "multinode-dashboard.labels" . | nindent 4 }}
+spec:
+  storageClassName: {{ .Values.configPersistence.storageClass }}
+  accessModes:
+    - ReadWriteOncePod
+  resources:
+    requests:
+      storage: {{ .Values.configPersistence.size | quote }}
+{{- end }}
+---
+{{- if not .Values.configPersistence.existingClaim }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ include "multinode-dashboard.fullname" . }}-identity-pvc
+  labels:
+    {{- include "multinode-dashboard.labels" . | nindent 4 }}
+spec:
+  storageClassName: {{ .Values.identityPersistence.storageClass }}
+  accessModes:
+    - ReadWriteOncePod
+  resources:
+    requests:
+      storage: {{ .Values.identityPersistence.size | quote }}
+{{- end }}

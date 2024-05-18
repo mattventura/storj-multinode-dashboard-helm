@@ -1,0 +1,17 @@
+# Change this to true for initial identity upload (and optional db), then false for actual run
+setupMode: false
+service:
+  type: LoadBalancer
+  port: 80
+# annotations:
+#   metallb.universe.tf/loadBalancerIPs: 10.222.1.61
+#   external-dns.alpha.kubernetes.io/hostname: storj-dashboard.k8s.mattventura.net
+
+
+#configPersistence:
+#  storageClass: "csi-cephfs-sc"
+#identityPersistence:
+#  storageClass: "csi-cephfs-sc"
+
+
+
